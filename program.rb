@@ -35,8 +35,8 @@ def get_stats(questions)
 end
 
 def valid_question?(id, current_ids, possible_ids)
-  return true if current_ids.uniq.length == possible_ids.length
-  return false if current_ids.include?(id)
+  return true unless current_ids.include?(id) && current_ids.length < possible_ids.length
+  return false if current_ids.count(id) >= (current_ids.count/possible_ids.count).floor
   true
 end
 
